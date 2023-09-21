@@ -103,8 +103,60 @@ const data = [
 
     <button class="expandButton">+</button>
   </div>
+*/
 
-  Adım 2: Hala `haberYapici` içindeyiz, button.expandButton 'a bir click event dinleyici ekleyin.
+const sonDakika = {
+  baslik: "Workintech yeni eğitimlerle",
+  tarih: "31 Ekim 2022",
+  ilkParagraf: "Yeni eğitimler",
+  ikinciParagraf: "Yeni umutlar",
+  ucuncuParagraf: "Çok yakında sizlerle",
+};
+data.push(sonDakika);
+
+const haberYapici = (haberler) => {
+  const articlesSection = document.querySelector(".articles");
+
+  haberler.forEach((haber) => {
+    const haberDiv = document.createElement("div");
+    haberDiv.classList.add("article");
+    articlesSection.appendChild(haberDiv);
+
+    const h2 = document.createElement("h2");
+    haberDiv.appendChild(h2);
+    h2.textContent = haber.baslik;
+
+    const p = document.createElement("p");
+    haberDiv.appendChild(p);
+    p.classList.add("tarih");
+    p.textContent = haber.tarih;
+
+    const p1 = document.createElement("p");
+    haberDiv.appendChild(p1);
+    p1.textContent = haber.ilkParagraf;
+
+    const p2 = document.createElement("p");
+    haberDiv.appendChild(p2);
+    p2.textContent = haber.ikinciParagraf;
+
+    const p3 = document.createElement("p");
+    haberDiv.appendChild(p3);
+    p3.textContent = haber.ucuncuParagraf;
+
+    const buttonDiv = document.createElement("button");
+    haberDiv.appendChild(buttonDiv);
+    buttonDiv.classList.add("expandButton");
+    buttonDiv.textContent = "+";
+    buttonDiv.addEventListener("click", () => {
+      haberDiv.classList.toggle("article-open");
+    });
+
+    return haberDiv;
+  });
+};
+haberYapici(data);
+
+/*Adım 2: Hala `haberYapici` içindeyiz, button.expandButton 'a bir click event dinleyici ekleyin.
   Bu dinleyici div.article öğesine 'article-open' class'ını ekleyip/çıkaracak (toogle).
 
   Adım 3: Fonksiyonunuzdan bir öğe döndürmeyi unutmayın.
